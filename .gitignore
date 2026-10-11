@@ -1,0 +1,23 @@
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+# ignore datasets, but keep download/setup instructions
+data/*
+!data/README.md
+artifacts/
+outputs/
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.ckpt
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
