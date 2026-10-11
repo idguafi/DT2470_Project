@@ -1,10 +1,36 @@
 import librosa
+import numpy as np
 
 N_FFT = 2048
 WIN_LENGTH = 2048
 HOP_LENGTH = 512
 N_MELS = 128
 N_MFCC = 20
+
+
+def load_audio(audio_path):
+    """Load audio files
+
+    Args:
+        audio_path (str): Path to audio file
+
+    Returns:
+        y: Audio samples over time
+        sr: Sampling rate
+    """
+    return librosa.load(path=audio_path, sr=None)  # retain 44.1 kHz
+
+
+def compress_features(features):
+    """
+    Summarizes all features into a 2xn vector where n is the number of features.
+    This is to reduce the size of the feature vectors that we obtain from our clips.
+    By doing this, we discard any temporal ordering.
+    """
+    features = np.asanyarray(features)
+    mean = features.mean(axis=1)
+    std = features.mean(axis=1)
+    return np.concatenate([mean, std])
 
 
 def extract_mfcc(y, sr, *,
@@ -85,7 +111,7 @@ def extract_chroma(y, sr, *,
                    win_length=WIN_LENGTH,
                    hop_length=HOP_LENGTH,
                    ):
-    
+
     return librosa.feature.chroma_stft(y=y,
                                        sr=sr,
                                        n_fft=n_fft,
