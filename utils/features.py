@@ -29,7 +29,7 @@ def compress_features(features):
     """
     features = np.asanyarray(features)
     mean = features.mean(axis=1)
-    std = features.mean(axis=1)
+    std = features.std(axis=1)
     return np.concatenate([mean, std])
 
 
@@ -88,12 +88,12 @@ def extract_log_mel_spectrogram(y, sr, *,
                                 hop_length=HOP_LENGTH,
                                 n_mels=N_MELS,):
 
-    return librosa.feature.melspectrogram(y=y,
+    return librosa.power_to_db(librosa.feature.melspectrogram(y=y,
                                           sr=sr,
                                           n_fft=n_fft,
                                           hop_length=hop_length,
                                           win_length=win_length,
-                                          n_mels=n_mels)
+                                          n_mels=n_mels))
 
 
 def extract_zero_crossing_rate(y, sr, *,
@@ -101,7 +101,6 @@ def extract_zero_crossing_rate(y, sr, *,
                                hop_length=HOP_LENGTH,
                                ):
     return librosa.feature.zero_crossing_rate(y=y,
-                                              sr=sr,
                                               frame_length=frame_length,
                                               hop_length=hop_length)
 
