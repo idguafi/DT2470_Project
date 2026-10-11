@@ -7,22 +7,22 @@ N_MELS = 128
 N_MFCC = 20
 
 
-def extract_mfcc(y, sr,
+def extract_mfcc(y, sr, *,
                  n_fft=N_FFT,
                  win_length=WIN_LENGTH,
                  hop_length=HOP_LENGTH,
                  n_mels=N_MELS,
                  n_mfcc=N_MFCC):
     """
-    Extracts MFCC using librosa implementation. 
+    Extracts MFCC using librosa implementation.
 
     Args:
         y: Audio as ndarray.
-        sr: Sampling rate. 
-        n_mfcc: Number of 
+        sr: Sampling rate.
+        n_mfcc: Number of
 
     Returns:
-        MFCCs: Array of n MFCCs. 
+        MFCCs: Array of n MFCCs.
     """
     return librosa.feature.mfcc(y=y, sr=sr,
                                 n_fft=n_fft,
@@ -32,21 +32,62 @@ def extract_mfcc(y, sr,
                                 n_mfcc=n_mfcc)
 
 
-def extract_spectral_centroids(y, sr, ):
-    pass
+def extract_spectral_centroid(y, sr, *,
+                              n_fft=N_FFT,
+                              win_length=WIN_LENGTH,
+                              hop_length=HOP_LENGTH,
+                              ):
+    """Extracts spectral centroid with Librosa.
+
+    Args:
+        y: Audio as ndarray.
+        sr: Sampling rate.
+        n_fft: STFT frame length
+        win_length: Window function size.
+        hop_length: STFT hop length. 
+
+    Returns:
+        centroids: The centroid freqs.
+    """
+    return librosa.feature.spectral_centroid(y=y,
+                                             sr=sr,
+                                             n_fft=n_fft,
+                                             win_length=win_length,
+                                             hop_length=hop_length)
 
 
-def extract_mel_spectrogram():
-    pass
+def extract_log_mel_spectrogram(y, sr, *,
+                                n_fft=N_FFT,
+                                win_length=WIN_LENGTH,
+                                hop_length=HOP_LENGTH,
+                                n_mels=N_MELS,):
+
+    return librosa.feature.melspectrogram(y=y,
+                                          sr=sr,
+                                          n_fft=n_fft,
+                                          hop_length=hop_length,
+                                          win_length=win_length,
+                                          n_mels=n_mels)
 
 
-def extract_mel_spectrogram_db_magnitude():
-    pass
+def extract_zero_crossing_rate(y, sr, *,
+                               frame_length=WIN_LENGTH,
+                               hop_length=HOP_LENGTH,
+                               ):
+    return librosa.feature.zero_crossing_rate(y=y,
+                                              sr=sr,
+                                              frame_length=frame_length,
+                                              hop_length=hop_length)
 
 
-def extract_zero_crossings():
-    pass
-
-
-def extract_chroma():
-    pass
+def extract_chroma(y, sr, *,
+                   n_fft=N_FFT,
+                   win_length=WIN_LENGTH,
+                   hop_length=HOP_LENGTH,
+                   ):
+    
+    return librosa.feature.chroma_stft(y=y,
+                                       sr=sr,
+                                       n_fft=n_fft,
+                                       win_length=win_length,
+                                       hop_length=hop_length)
