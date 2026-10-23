@@ -18,7 +18,7 @@ def load_audio(audio_path):
         y: Audio samples over time
         sr: Sampling rate
     """
-    return librosa.load(path=audio_path, sr=None)  # retain 44.1 kHz
+    return librosa.load(path=audio_path, sr=None) 
 
 
 def compress_features(features):

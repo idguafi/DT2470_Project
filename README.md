@@ -1,8 +1,14 @@
-# Repo structure: 
+# Purpose, structure, and authors
 
-* Notebooks is where we train and evaluate our models in python notebooks. 
+Project members: Simone Demir, Sophia Hendey Bröte, Sam Barati Bakhtiiari
 
-* Utils is a directory of common functions such as feature extraction functions so that experiments are standardized 
+This repository contains the code for our AI music classifier project in DT2470. 
+
+/notebooks contains our models and training + evaluation runs. 
+/utils contains feature and data extraction files. 
+
+We used the Jamendo and SONICS datasets for human and artificial music respectively. 
+
 
 # How to get started: 
 
